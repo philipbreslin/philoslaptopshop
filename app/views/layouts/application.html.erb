@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Philoslaptopshop</title>
+  <%= stylesheet_link_tag    "custom.css.scss", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="header">
+  <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container">
+          <nav>
+            <ul class="nav">
+              | <%= link_to "Home", :controller => "welcome", :action => "home" %> |
+                <%= link_to "Product Catalogue", products_path %> |
+                <%= link_to "Your Cart", :controller => "carts", :action => "your_cart" %> |
+                <%= link_to "Register", :controller => "welcome", :action => "register" %> |
+                <%= link_to "Leave Site", :controller => "welcome", :action => "thank_you" %> |
+
+
+                <div id='header'>
+                  <% if logged_in? %>
+                  <%= current_user.email %> |
+                  <%= link_to "Logout", logout_path %> |
+                  <%= link_to "Create User", new_user_path %> |
+                  <% else %>
+                  <%= link_to "Login", login_path %> |
+                  <% end %>
+                </div>
+            </ul>
+          </nav>
+      </div>
+    </div>
+  </header>
+</div>
+<%= yield %>
+
+</body>
+</html>
